@@ -3,8 +3,12 @@ pipeline {
     
     environment {
        HOST = "13.231.254.79"
-          }
+                   }
 
+    parameters {
+       string defaultValue: 'main', name: 'branch', trim: true 
+                 }
+    
     stages{
         stage('BUILD') {
             
