@@ -12,15 +12,15 @@ pipeline {
     
     stages{
         stage('BUILD') {
+            catchError(message: message, buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                agent { label 'master' }
             
-            agent { label 'master' }
-            
-            steps{
+                steps{
                  sh '''
                     sleep 5
                     echo "This is a BUILD stage $BRANCH_NAME "
-                    exit 1
-                '''
+                 '''
+                }   
             }
         }
 
