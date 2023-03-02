@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     
     environment {
        HOST = "13.231.254.79"
