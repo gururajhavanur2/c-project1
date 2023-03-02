@@ -1,7 +1,12 @@
 pipeline {
     agent any
+    
+    parameters {
+     string defaultValue: 'main', name: 'branch', trim: true
+    }
+    
     environment {
-        host = "54.238.78.182"
+        BRANCH_NAME = $branch
     }
 
     
@@ -13,7 +18,7 @@ pipeline {
             steps{
                  sh '''
                     sleep 5
-                    echo "This is a BUILD stage $host "
+                    echo "This is a BUILD stage $BRANCH_NAME "
                 '''
             }
         }
@@ -25,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                     sleep 10
-                    echo "This is a TEST stage $host "
+                    echo "This is a TEST stage $BRANCH_NAME "
                 '''
             }
         }
@@ -37,7 +42,7 @@ pipeline {
             steps{
                 sh '''
                     sleep 5
-                    echo "This is a DEPLOY stage $host"
+                    echo "This is a DEPLOY stage $BRANCH_NAME"
     
                 '''
             }
