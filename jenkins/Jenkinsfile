@@ -1,5 +1,10 @@
 pipeline {
-    agent none 
+    agent none
+    
+    environment {
+       HOST = "13.231.254.79"
+          }
+
     stages{
         stage('BUILD') {
             
