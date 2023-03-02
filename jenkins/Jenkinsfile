@@ -24,31 +24,35 @@ pipeline {
         }
 
         stage('TEST') {
+
             parallel{
-                   stage('TEST ON LINUX MACHINE')
+
+                stage('TEST ON LINUX MACHINE'){
             
             
-                     agent { label 'slave1' }
+                       agent { label 'slave1' }
             
-                   steps { 
+                     steps { 
                       sh '''
-                    sleep 10
-                    echo "This is a TEST on LINUX"
-                        '''
-                     }
+                      sleep 10
+                       echo "This is a TEST on LINUX"
+                         '''
+                       }
+                }   
             
         
-                    stage('TEST ON WINDOWS MACHINE')
+                    stage('TEST ON WINDOWS MACHINE'){
             
             
-                     agent { label 'slave1' }
+                       agent { label 'slave1' }
             
-                    steps { 
-                      sh '''
-                       sleep 10
-                        echo "This is a TEST on WINDOWS "
-                        '''
-                     }
+                       steps { 
+                          sh '''
+                            sleep 10
+                            echo "This is a TEST on WINDOWS "
+                              '''
+                        }
+                    }
             } 
         }    
 
