@@ -24,16 +24,33 @@ pipeline {
         }
 
         stage('TEST') {
+            parallel{
+                   stage('TEST ON LINUX MACHINE')
             
-            agent { label 'slave1' }
             
-            steps {
-                sh '''
+                     agent { label 'slave1' }
+            
+                   steps { 
+                      sh '''
                     sleep 10
-                    echo "This is a TEST stage $BRANCH_NAME "
-                '''
-            }
-        }
+                    echo "This is a TEST on LINUX"
+                        '''
+                     }
+            
+        
+                    stage('TEST ON WINDOWS MACHINE')
+            
+            
+                     agent { label 'slave1' }
+            
+                    steps { 
+                      sh '''
+                       sleep 10
+                        echo "This is a TEST on WINDOWS "
+                        '''
+                     }
+            } 
+        }    
 
         stage('DEPLOY') {
             
