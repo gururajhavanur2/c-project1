@@ -1,22 +1,23 @@
 pipeline {
-    agent any 
-    stages {
-        stage('STAGE-1') {
-            when {
-                branch 'master'
-            }
-            steps{
-                sh "echo STEGE-1 executes if branch is master"
-            }
-        }
-
-        stage('STAGE-2'){
-            when {
-                branch 'test'
-            }
-            steps{
-                sh "echo STEGE-2 executes if branch is test"
-            }
-        }
+  agent any
+  
+  stages {
+    stage('build') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'echo "Building..."'
+      }
     }
+    
+    stage('test') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'echo "Testing..."'
+      }
+    }
+  }
 }
