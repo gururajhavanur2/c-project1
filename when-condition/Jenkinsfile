@@ -1,13 +1,12 @@
-// Run stages only if the branch is master
 piepline {
     agent any 
     stages {
         stage('STAGE-1') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps{
-                sh "echo STEGE-2 executes if branch is master"
+                sh "echo STEGE-1 executes if branch is main"
             }
         }
 
@@ -16,9 +15,8 @@ piepline {
                 branch 'test'
             }
             steps{
-                sh "echo STEGE-2 executes if branch is master"
+                sh "echo STEGE-2 executes if branch is test"
             }
         }
     }
 }
-
