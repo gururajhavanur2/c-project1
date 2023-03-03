@@ -1,13 +1,26 @@
 pipeline {
-     agent any
-     stages {
-         stage('build') {
-              when {
-                  branch 'master'             
-              }
-              steps {
-                 echo "Working on master branch"
-              }
-         }
-     }
+    agent any 
+    parameters {
+        string defaultValue: 'main', name: 'test', trim: true
+   }
+ 
+    stages {
+        stage('STAGE-1') {
+            when {
+                branch 'main'
+            }
+            steps{
+                sh "echo STEGE-1 executes if branch is main"
+            }
+        }
+
+        stage('STAGE-2'){
+            when {
+                branch 'test'
+            }
+            steps{
+                sh "echo STEGE-2 executes if branch is test"
+            }
+        }
+    }
 }
