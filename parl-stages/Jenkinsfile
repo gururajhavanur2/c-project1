@@ -1,26 +1,39 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('parallel') {
+		stage('BUILD') {
+			steps {
+				sh 'sleep 5'
+			}
+		}
+        stage('TEST MULTIPLE') {
             parallel {
-                stage('STAGE-1') {
-                    when {
-                        branch 'main'
-                    }
-                    steps{
-                        sh "echo STEGE-2 executes if branch is main"
-                    }
-                }
-
-                stage('STAGE-2'){
-                    when {
-                        branch 'main'
-                    }
-                    steps{
-                        sh "echo STEGE-2 executes if branch is main"
-                    }
-                }
-            }    
-        }    
+				stage('WINDOWS TEST') {
+					steps {
+                     	sh 'sleep 5'
+					}
+				}
+				stage('LINUX TEST') {
+					steps {
+						sh "sleep 5"
+					}
+				}
+            }
+        }
+		
+		stage('DEPLOY') {
+			parallel {
+				stage('SERVER1') {
+					steps {
+                     	sh 'sleep 5'
+					}
+				}
+				stage('SERVER2') {
+					steps {
+						sh "sleep 5"
+					}
+				}
+            }
+		}
     }
 }
