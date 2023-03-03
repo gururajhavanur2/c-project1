@@ -1,4 +1,3 @@
-// Run a particular stage based on the parameter passed as stage name ? 
 pipeline {
     agent any 
     parameters {
